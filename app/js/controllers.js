@@ -195,6 +195,14 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
                 $scope.field.tilled += 1;
                 $scope.player.subtractHealth(actionCost);
             }
+        },
+        breakRock: function() {
+            var actionCost = 10;
+            if ($scope.field.rocks > 0 && $scope.player.canExecuteAction(actionCost)) {
+                $scope.field.rocks -= 1;
+                $scope.field.free += 1;
+                $scope.player.subtractHealth(actionCost);
+            }
         }
     }
 
