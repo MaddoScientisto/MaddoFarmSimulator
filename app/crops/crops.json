@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Spaghetti",
+        "description": "Spaghetti barilla.",
+        "basePrice": 20,
+        "sellPrice": 100,
+        "growthStatus": 0,
+        "maxGrowth": 100,
+        "growthRate": 25,
+        "amount": 0
+    },
+    {
+        "name": "Disagio",
+        "description": "Disagio che dissy.",
+        "basePrice": 30,
+        "sellPrice": 150,
+        "growthStatus": 0,
+        "maxGrowth": 100,
+        "growthRate": 18,
+        "amount": 0
+        
+    },
+    {
+        "name": "AyyLmao",
+        "description": "AyyLmao che suffry.",
+        "basePrice": 50,
+        "sellPrice": 300,
+        "growthStatus": 0,
+        "maxGrowth": 100,
+        "growthRate": 10,
+        "amount": 0
+    }
+]

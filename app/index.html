@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" ng-app="harvestMaddoApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+</head>
+
+<body ng-controller="HarvestMaddoCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div>Player: {{player.name}}. Health: {{player.currentHealth}}/{{player.maxHealth}}. Money: {{player.money}}$.
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div id="fieldContainer">
+                    <ul>
+                        <li>Tiles: <span class="fieldTiles">{{field.tiles}}</span></li>
+                        <li>Rocks: <span class="fieldRocks">{{field.rocks}}</span></li>
+                        <li>Wood: <span class="fieldWood">{{field.wood}}</span></li>
+                        <li>Weed: <span class="fieldWeed">{{field.weed}}</span></li>
+                        <li>Free: <span class="fieldFree">{{field.free}}</span></li>
+                        <li>Tilled: <span class="fieldTilled">{{field.tilled}}</span></li>
+                    </ul>
+                    <button ng-click="field.till()">Till</button>
+                    <div>
+                        <h5>Planted Crops: {{field.crops.length}}/{{field.free}}</h5>
+                        <button ng-click="waterAllCrops()">Water All</button>
+                        <ul>
+
+                            <li ng-repeat="crop in field.crops">
+                                <p>{{crop.name}} {{crop.maxGrowth / crop.growthStatus}}%</p>
+                                <p>Watered: {{crop.watered | checkmark}}</p>
+                                <button ng-click="crop.water()">Water</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4">
+                <h5>Inventory:</h5>
+                <ul>
+                    <li ng-repeat="item in player.inventory">
+                        {{item.name}} x {{item.amount}}
+                        <button ng-click="plantCrop(item)">Plant</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-4">
+                <h5>Crops:</h5>
+                <ul>
+                    <li ng-repeat="crop in crops">
+                        <button ng-click="buyCrop(crop)">Buy</button>
+                        <p>{{crop.name}}, {{crop.basePrice}}$</p>
+                        <p>{{crop.description}} Grows in {{crop.maxGrowth / crop.growthRate}} days.</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
