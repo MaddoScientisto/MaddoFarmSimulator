@@ -60,7 +60,7 @@
                             <ul>
 
                                 <li ng-repeat="crop in field.crops">
-                                    <p>{{crop.name}} {{crop.maxGrowth / crop.growthStatus * 100}}%</p>
+                                    <p>{{crop.name}} {{crop.growthStatus / crop.maxGrowth * 100 | number:0}}%</p>
                                     <p>Watered: {{crop.watered | checkmark}}</p>
                                     <p>Mature: {{crop.mature | checkmark}}</p>
                                     <button class="btn btn-info" ng-click="crop.water()" ng-if="!crop.watered">Water</button>
@@ -111,7 +111,7 @@
                     <li ng-repeat="crop in crops">
                         <button class="btn btn-warning" ng-click="buyCrop(crop)">Buy</button>
                         <p>{{crop.name}}, {{crop.basePrice}}$</p>
-                        <p>{{crop.description}} Grows in {{crop.maxGrowth / crop.growthRate}} days.</p>
+                        <p>{{crop.description}} Grows in {{crop.maxGrowth / crop.growthRate | number:0}} days.</p>
                     </li>
                 </ul>
             </div>

@@ -23,9 +23,21 @@
 
 var harvestMaddoApp = angular.module('harvestMaddoApp', ['harvestMaddoFilters']);
 
+var cazzochetesefrega = function(ayy) {
+    Object.assign(this,ayy);
+}
+
+cazzochetesefrega.prototype.just = function() {
+    console.log("ayylmao");
+}
+
 harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('crops/crops.json').success(function (data) {
-        $scope.crops = data;
+        
+        $scope.crops = data.map(function(i) {
+                     return new cazzochetesefrega(i);
+        });
+        
     });
 
 
