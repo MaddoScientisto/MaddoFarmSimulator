@@ -32,7 +32,7 @@ npm install
 node_modules/.bin/bower update
 
 # Run all the tests on each step
-scripts/private/test-all.sh
+#scripts/private/test-all.sh
 
 # Clean out the snapshot directory if it was left behind
 rm -rf $SNAP_DIR

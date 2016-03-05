@@ -1,4 +1,4 @@
-# AngularJS Phone Catalog Tutorial Application
+# Maddo Farm Simulator (Harvest Clicker)
 
 ## Overview
 

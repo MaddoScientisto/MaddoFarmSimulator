@@ -25,11 +25,11 @@ var harvestMaddoApp = angular.module('harvestMaddoApp', ['harvestMaddoFilters'])
 
 var cazzochetesefrega = function(ayy) {
     Object.assign(this,ayy);
-}
+};
 
 cazzochetesefrega.prototype.just = function() {
-    console.log("ayylmao");
-}
+    //console.log("ayylmao");
+};
 
 harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('crops/crops.json').success(function (data) {
@@ -52,7 +52,7 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
             
             //var a = FindObjectInArray(inv, 'name', crop.name);
             
-            var a = inv.find(function (item) { return item.name == crop.name });
+            var a = inv.find(function (item) { return item.name == crop.name; });
 
             if (a) {
                 a.amount += 1;
@@ -63,10 +63,10 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
 
 
         }
-    }
+    };
 
     $scope.plantCrop = function (crop) {
-        var cropModel = $scope.crops.find(function (item) { return item.name == crop.name });
+        var cropModel = $scope.crops.find(function (item) { return item.name == crop.name; });
 
         if (!cropModel) return false;
 
@@ -95,7 +95,7 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
                         //$scope.player.money += this.sellPrice;
                         var that = this;
                         $scope.player.shipped.push(this);
-                        field.crops.splice(field.crops.findIndex(function (item) { return item.id == that.id }), 1);
+                        field.crops.splice(field.crops.findIndex(function (item) { return item.id == that.id; }), 1);
                     }
                 }
             };
@@ -106,14 +106,13 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
             crop.amount -= 1;
             if (crop.amount < 1) {
                 $scope.player.inventory.splice(
-                    $scope.player.inventory.findIndex(function (item) { return item.name == crop.name })
-                    , 1);
+                    $scope.player.inventory.findIndex(function (item) { return item.name == crop.name; }), 1);
             }
 
             return true;
         }
 
-    }
+    };
 
     $scope.waterAllCrops = function () {
         $scope.field.crops.forEach(function (element) {
@@ -171,7 +170,7 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
         season: 1,
         day: 1,
         year: 1
-    }
+    };
 
     $scope.player = {
         name: 'Maddo',
@@ -216,6 +215,6 @@ harvestMaddoApp.controller('HarvestMaddoCtrl', ['$scope', '$http', function ($sc
                 $scope.player.subtractHealth(actionCost);
             }
         }
-    }
+    };
 
 }]);
