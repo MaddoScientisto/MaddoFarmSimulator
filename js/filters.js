@@ -1,0 +1,1 @@
+"use strict";angular.module("harvestMaddoFilters",[]).filter("checkmark",function(){return function(r){return r?"✓":"✘"}}).filter("ayy",function(){return function(r){return r?"✓cazzo":"✘"}});

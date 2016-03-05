@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" ng-app="harvestMaddoApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+</head>
+
+<body ng-controller="HarvestMaddoCtrl">
+    <div class="container">
+
+        <div clas="row">
+            <div class="col-xs-12">
+                <p>Day: {{environment.day}} Season:{{environment.season}} Year:{{environment.year}}</p>
+                <span><button class="btn btn-primary" ng-click="advanceDay()">Advance Day</button></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div>Player: {{player.name}}. Health: {{player.currentHealth}}/{{player.maxHealth}}. Money: {{player.money}}$.
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Field Stats</h4>
+                    </div>
+                    <div id="fieldContainer" class="panel-body">
+                        <ul>
+                            <li>Tiles: <span class="fieldTiles">{{field.tiles}}</span></li>
+                            <li>Rocks: <span class="fieldRocks">{{field.rocks}}</span></li>
+                            <li>Wood: <span class="fieldWood">{{field.wood}}</span></li>
+                            <li>Weed: <span class="fieldWeed">{{field.weed}}</span></li>
+                            <li>Free: <span class="fieldFree">{{field.free}}</span></li>
+                            <li>Tilled: <span class="fieldTilled">{{field.tilled}}</span></li>
+                        </ul>
+                        <div class="btn-group" role="group">
+                        <div class="btn-group" role="group"><button class="btn btn-warning" ng-click="field.till()">Till</button></div>
+                        <div class="btn-group" role="group"><button class="btn btn-warning" ng-click="field.breakRock()">Break Rock</button></div>
+                        <div class="btn-group" role="group"><button class="btn btn-warning" ng-click="field.cutWood()">Cut Wood</button></div>
+                        <div class="btn-group" role="group"><button class="btn btn-warning" ng-click="field.cutWeed()">Cut Weed</button></div>
+                        </div>
+                        <div>
+                            <h5>Planted Crops: {{field.crops.length}}/{{field.free}}</h5>
+                            <button class="btn btn-info" ng-click="waterAllCrops()">Water All</button>
+                            <ul>
+
+                                <li ng-repeat="crop in field.crops">
+                                    <p>{{crop.name}} {{crop.growthStatus / crop.maxGrowth * 100 | number:0}}%</p>
+                                    <p>Watered: {{crop.watered | checkmark}}</p>
+                                    <p>Mature: {{crop.mature | checkmark}}</p>
+                                    <button class="btn btn-info" ng-click="crop.water()" ng-if="!crop.watered">Water</button>
+                                    <button class="btn btn-warning" ng-click="crop.sell()" ng-if="crop.mature">Sell ({{crop.sellPrice}})$</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            <li class="active" role="presentation"><a href="#inventorySection" aria-controls="inventorySection" data-toggle="tab" role="tab">Inventory</a></li>
+                            <li role="presentation"><a href="#shippingBinSection" aria-controls="shippingBinSection" data-toggle="tab" role="tab">Shipping Bin</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="inventorySection" role="tabpanel" class="tab-pane active">
+                                <h5>Inventory:</h5>
+                                <ul>
+                                    <li ng-repeat="item in player.inventory">
+                                        {{item.name}} x {{item.amount}}
+                                        <button class="btn btn-success" ng-click="plantCrop(item)">Plant</button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="shippingBinSection" role="tabpanel" class="tab-pane">
+                                <h5>Shipping bin:</h5>
+                                <li ng-repeat="item in player.shipped">
+                                    {{item.name}}
+
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4">
+                <h5>Crops:</h5>
+                <ul>
+                    <li ng-repeat="crop in crops">
+                        <button class="btn btn-warning" ng-click="buyCrop(crop)">Buy</button>
+                        <p>{{crop.name}}, {{crop.basePrice}}$</p>
+                        <p>{{crop.description}} Grows in {{crop.maxGrowth / crop.growthRate | number:0}} days.</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
